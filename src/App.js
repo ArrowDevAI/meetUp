@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+//Components Imported
+import CitySearch from './components/CitySearch';
+import EventList from './components/EventList';
+import NumberOfEvents from './components/NumberOfEvents';
+
+//Funcions Imported
+import React, { useState, useEffect } from 'react';
+import { extractLocations, getEvents } from './api';
+import {visibleEvents} from './components/NumberOfEvents';
+
+//Stylesheets Imported
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const [events, setEvents] = useState([]);
+
+useEffect(()=>{
+  async function fetchEvents () {
+    try {
+      const fetchedEvents = await getEvents();
+      setEvents(fetchedEvents);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+  fetchEvents();
+},[]);
+
+
+ return (
+   <div className="App">
+     <CitySearch extractLocations = {extractLocations}/>
+     <EventList events = {events} visibleEvents={visibleEvents}/>
+     <NumberOfEvents/> 
+   </div>
+ );
 }
 
 export default App;

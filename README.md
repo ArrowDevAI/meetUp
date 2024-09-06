@@ -46,7 +46,7 @@ Then each event's details should be collapsed by default
 
 Given the user is viewing a list of events
 
-When the user clicks on an event's expand button
+When the user clicks on an event's "Show Details" button
 
 Then the event details should be displayed
 
@@ -54,7 +54,7 @@ Then the event details should be displayed
 
 Given the user has expanded an event's details
 
-When the user clicks on the event's collapse button
+When the user clicks on the event's "Hide Details" button
 
 Then the event details should be hidden
 

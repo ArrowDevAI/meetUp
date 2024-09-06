@@ -25,6 +25,7 @@ module.exports.getAuthURL = async () => {
   };
 };
 
+
 module.exports.getAccessToken = async (event) => {
   const code = decodeURIComponent(`${event.pathParameters.code}`)
 
