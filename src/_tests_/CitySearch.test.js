@@ -8,7 +8,7 @@ describe('<CitySearch/> component', () => {
     let CitySearchComponent;
     let cityTextBox;
     beforeEach(() => { //clear Prop and state values?
-        CitySearchComponent = render(<CitySearch />);
+        CitySearchComponent = render(<CitySearch allLocations = {[]}/>);
         cityTextBox = CitySearchComponent.queryByRole('textbox')
     })
     test('renders text input', () => {
@@ -25,7 +25,7 @@ describe('<CitySearch/> component', () => {
     test('renders a list of suggestions when city textbox gains focus',
         async () => {
             const user = userEvent.setup();
-
+    
             await user.click(cityTextBox);
             const suggestionList = CitySearchComponent.queryByRole('list');
             expect(suggestionList).toBeInTheDocument();
@@ -81,7 +81,7 @@ describe('<CitySearch/> component', () => {
         
             const allEvents = await getEvents();
             const allLocations = extractLocations(allEvents);
-        
+            const suggestionListItems = within(CitySearchDOM).queryAllByRole('listitem');
             expect(suggestionListItems.length).toBe(allLocations.length + 1);
          });
 
