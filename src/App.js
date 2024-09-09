@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { extractLocations, getEvents } from './api';
 import {visibleEvents} from './components/NumberOfEvents';
 
-//Stylesheets Imported
+
 import './App.css';
 
 const App = () => {
@@ -19,12 +19,15 @@ useEffect(()=>{
     try {
       const fetchedEvents = await getEvents();
       setEvents(fetchedEvents);
+
+
     }
     catch (error) {
       console.log(error)
     }
   }
   fetchEvents();
+  
 },[]);
 
 
@@ -35,6 +38,9 @@ useEffect(()=>{
      <NumberOfEvents/> 
    </div>
  );
+
+console.log(events)
+
 }
 
 export default App;
