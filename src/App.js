@@ -20,7 +20,6 @@ useEffect(()=>{
       const fetchedEvents = await getEvents();
       setEvents(fetchedEvents);
 
-
     }
     catch (error) {
       console.log(error)
@@ -30,7 +29,6 @@ useEffect(()=>{
   
 },[]);
 
-
  return (
    <div className="App">
      <CitySearch extractLocations = {extractLocations}/>
@@ -38,8 +36,6 @@ useEffect(()=>{
      <NumberOfEvents/> 
    </div>
  );
-
-console.log(events)
 
 }
 
