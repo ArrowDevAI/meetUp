@@ -13,34 +13,26 @@ import './App.css';
 
 const App = () => {
   const [events, setEvents] = useState([]);
+  const [currentNOE, setCurrentNOE] = useState(32);
+  const [allLocations, setAllLocations] = useState([]);
 
-useEffect(()=>{
-  async function fetchEvents () {
-    try {
-      const fetchedEvents = await getEvents();
-      setEvents(fetchedEvents);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-
-    }
-    catch (error) {
-      console.log(error)
-    }
+  const fetchData = async () => {
+    const allEvents = await getEvents();
+    setEvents(allEvents.slice(0, currentNOE));
+    setAllLocations(extractLocations(allEvents));
   }
-  fetchEvents();
-  
-},[]);
 
-
- return (
-   <div className="App">
-     <CitySearch extractLocations = {extractLocations}/>
-     <EventList events = {events} visibleEvents={visibleEvents}/>
-     <NumberOfEvents/> 
-   </div>
- );
-
-console.log(events)
-
+  return (
+    <div className="App">
+      <CitySearch allLocations={allLocations} />
+      <NumberOfEvents />
+      <EventList events={events} visibleEvents={visibleEvents}/>
+    </div>
+  );
 }
 
 export default App;
