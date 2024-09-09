@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations }) => { //does this need to be passed in app.js?
+const CitySearch = ({ allLocations }) => { 
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+
+console.log("suggestion initial: ", suggestions)
+
+    useEffect(() => {
+        setSuggestions(allLocations);
+      }, [`${allLocations}`]);
+
+      console.log("ALL LOCATIONS: ", suggestions)
 
     const handleInputChanged = (event) => {
         const value = event.target.value;

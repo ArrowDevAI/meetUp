@@ -1,6 +1,7 @@
-import { render } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import EventList from "../components/EventList";
 import { getEvents } from "../api";
+import App from "../App";
 
 describe('<EventList/> component', () => {
     let EventListComponent;
@@ -14,26 +15,28 @@ describe('<EventList/> component', () => {
     test('has an element with "list" role', () => {
         expect(EventListComponent.getByRole("list")).toBeInTheDocument();
       });
+    });
 
-    test('renders the correct number of events based on visibleEvents prop', async () => {
-   
-        const allEvents = await getEvents();
-        const visibleEvents = 32;
-        rerender(<EventList events={allEvents} visibleEvents={visibleEvents} />);
 
-        const eventComponents = EventListComponent.queryAllByTestId('event-component');
+
+describe('<EventList/> integraion', () => {
+        let EventListComponent;
+        let rerender;
         
-        expect(eventComponents).toHaveLength(visibleEvents);
-        console.log("All visible Events: ", visibleEvents)
-    });
+        beforeEach(() => {
+            EventListComponent = render(<EventList events={[]} />);
+            ({ rerender } = EventListComponent);
+        });
 
+      
+        test('renders a list of 32 events when the app is mounted and rendered', async () => {
+            const AppComponent = render(<App />);
+            const AppDOM = AppComponent.container.firstChild;
+            const EventListDOM = AppDOM.querySelector('#event-list');
+            await waitFor(() => {
+              const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+              expect(EventListItems.length).toBe(32);
+            });
+          });
 
-    test('renders all events if visibleEvents prop is not passed', async () => {
-        const allEvents = await getEvents();
-        rerender(<EventList events={allEvents} />);
-        const eventComponents = EventListComponent.queryAllByTestId('event-component');
-
-        expect(eventComponents).toHaveLength(Math.min(allEvents.length, 32)); 
-        console.log('All Events Total: ', allEvents.length);
-    });
 });

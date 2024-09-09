@@ -1,7 +1,8 @@
-import { render } from "@testing-library/react";
+import { render, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CitySearch from "../components/CitySearch";
 import { extractLocations, getEvents } from "../api";
+import App from "../App";
 
 describe('<CitySearch/> component', () => {
     let CitySearchComponent;
@@ -58,6 +59,30 @@ describe('<CitySearch/> component', () => {
 
         await user.click(BerlinGermanySuggestion);
         expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
-
+        });
     });
+
+    describe('<CitySearch/> integration', () => {
+        let CitySearchComponent;
+        let cityTextBox;
+        beforeEach(() => { //clear Prop and state values?
+            CitySearchComponent = render(<CitySearch />);
+            cityTextBox = CitySearchComponent.queryByRole('textbox')
+        });
+
+        test('renders suggestions list when the app is rendered.', async () => {
+            const user = userEvent.setup();
+            const AppComponent = render(<App />);
+            const AppDOM = AppComponent.container.firstChild;
+        
+            const CitySearchDOM = AppDOM.querySelector('#city-search');
+            const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+            await user.click(cityTextBox);
+        
+            const allEvents = await getEvents();
+            const allLocations = extractLocations(allEvents);
+        
+            expect(suggestionListItems.length).toBe(allLocations.length + 1);
+         });
+
 });
