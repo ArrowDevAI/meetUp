@@ -1,32 +1,28 @@
+// src/components/NumberOfEvents.js
+
 import { useState } from "react";
 
-const NumberOfEvents = () => {
- const [query, setQuery] = useState('');
- const [visibleEvents, setVisibleEvents] = useState(32)
+const NumberOfEvents = ({ }) => {
 
- const handleInputChange = (event) => {
-  const value = event.target.value;
-  const numberValue = Number(value);
-  if (!isNaN(numberValue) && numberValue > 0) {
-    setVisibleEvents(numberValue);
-  } else {
-    setVisibleEvents(32); 
+  const [number, setNumber] = useState(32);
+
+  const handleInputChanged = (event) => {
+    const value = event.target.value;
+    setNumber(value);
   }
-  setQuery(value);
-};
 
   return (
-    <div id="events-loaded">
+    <div id="number-of-events">
+      <label htmlFor="number-of-events-input">Number of Events: </label>
       <input
-        id="eventsTextBox"
-        type="text" 
-        className="eventsLoaded"
-        placeholder="Events per Page"
-        value={query}
-        onChange={handleInputChange}
+        type="text"
+        id="number-of-events-input"
+        className="number-of-events-input"
+        value={number}
+        onChange={handleInputChanged}
       />
     </div>
   );
-};
+}
 
 export default NumberOfEvents;
