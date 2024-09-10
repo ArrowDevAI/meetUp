@@ -6,7 +6,7 @@ import NumberOfEvents from './components/NumberOfEvents';
 //Funcions Imported
 import React, { useState, useEffect } from 'react';
 import { extractLocations, getEvents } from './api';
-import {visibleEvents} from './components/NumberOfEvents';
+
 
 
 import './App.css';
@@ -32,7 +32,7 @@ useEffect(()=>{
  return (
    <div className="App">
      <CitySearch extractLocations = {extractLocations}/>
-     <EventList events = {events} visibleEvents={visibleEvents}/>
+     <EventList events = {events}/>
      <NumberOfEvents/> 
    </div>
  );
