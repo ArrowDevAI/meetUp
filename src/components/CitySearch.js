@@ -11,7 +11,6 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     setSuggestions(allLocations);
   }, [`${allLocations}`]);
 
-
   const handleInputChanged = (event) => {
     const value = event.target.value;
     const filteredLocations = allLocations ? allLocations.filter((location) => {
