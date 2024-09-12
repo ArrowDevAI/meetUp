@@ -28,6 +28,7 @@ describe('<App /> integration', () => {
   test('renders a list of events matching the city selected by the user', async () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
+
     const AppDOM = AppComponent.container.firstChild;
 
     const CitySearchDOM = AppDOM.querySelector('#city-search');
@@ -44,8 +45,9 @@ describe('<App /> integration', () => {
     const berlinEvents = allEvents.filter(
       event => event.location === 'Berlin, Germany'
     );
-
+    
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+
 
     allRenderedEventItems.forEach(event => {
       expect(event.textContent).toContain("Berlin, Germany");
