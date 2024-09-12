@@ -52,7 +52,6 @@ describe('<App /> integration', () => {
     allRenderedEventItems.forEach(event => {
       expect(event.textContent).toContain("Berlin, Germany");
     });
-
   });
 
 });
