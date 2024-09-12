@@ -50,7 +50,7 @@ describe('<Event /> component', () => {
     await user.click(EventComponent.queryByText('Hide Details'));
     expect(EventComponent.queryByTestId('event-details')).not.toBeInTheDocument();
     expect(EventComponent.queryByText('Hide Details')).not.toBeInTheDocument();
-    expect(EventComponent.queryByText('Show Details')).toBeInTheDocument();
+    expect(EventComponent.queryByText('Show Details')).toBeInTheDocument(); 
   });
 });
 
