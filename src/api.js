@@ -8,6 +8,20 @@ const response = await fetch(
   const result = await response.json();
   return result;
 };
+const removeQuery = () => {
+  let newurl;
+  if (window.history.pushState && window.location.pathname) {
+    newurl =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      window.location.pathname;
+    window.history.pushState("", "", newurl);
+  } else {
+    newurl = window.location.protocol + "//" + window.location.host;
+    window.history.pushState("", "", newurl);
+  }
+};
 
 export const getAccessToken = async () => {
   const accessToken = localStorage.getItem('access_token');
@@ -38,23 +52,10 @@ const getToken = async (code) => {
   const { access_token } = await response.json();
   access_token && localStorage.setItem("access_token", access_token);
 
+
   return access_token;
 };
 
-const removeQuery = () => {
-  let newurl;
-  if (window.history.pushState && window.location.pathname) {
-    newurl =
-      window.location.protocol +
-      "//" +
-      window.location.host +
-      window.location.pathname;
-    window.history.pushState("", "", newurl);
-  } else {
-    newurl = window.location.protocol + "//" + window.location.host;
-    window.history.pushState("", "", newurl);
-  }
-};
 
 export const extractLocations = (events) => {
   const extractedLocations = events.map((event) => event.location);
