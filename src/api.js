@@ -33,9 +33,10 @@ export const getAccessToken = async () => {
       const code = await searchParams.get("code");
       if (!code) {
         const response = await fetch(
-          "https://ArrowDevAI.github.io/meetUp/get-auth-url"
+          "https://ArrowDevAI.github.io/meetUp/api/get-auth-url"
         );
         const result = await response.json();
+
         const { authUrl } = result;
         return (window.location.href = authUrl);
       }
@@ -47,7 +48,7 @@ export const getAccessToken = async () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const response = await fetch(
-    'https://ArrowDevAI.github.io/meetUp/token' + '/' + encodeCode
+    'https://ArrowDevAI.github.io/meetUp/api/token' + '/' + encodeCode
   );
   const { access_token } = await response.json();
   access_token && localStorage.setItem("access_token", access_token);
@@ -72,7 +73,7 @@ export const getEvents = async () => {
 
   if (token) {
     removeQuery();
-    const url =  "https://ArrowDevAI.github.io/meetUp/get-events" + "/" + token;
+    const url =  "https://ArrowDevAI.github.io/meetUp/api/get-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
