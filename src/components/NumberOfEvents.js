@@ -1,5 +1,6 @@
 // src/components/NumberOfEvents.js
 
+import { findByPlaceholderText } from "@testing-library/react";
 import { useState } from "react";
 
 const NumberOfEvents = ({setCurrentNOE}) => {
@@ -7,8 +8,7 @@ const NumberOfEvents = ({setCurrentNOE}) => {
   const [number, setNumber] = useState(32);
 
   const handleInputChanged = (event) => {
-    const value = event.target.value; 
-
+    let value = event.target.value; 
     setNumber(value);
     setCurrentNOE(value);
   }
@@ -26,6 +26,7 @@ const NumberOfEvents = ({setCurrentNOE}) => {
         id="number-of-events-input"
         className="number-of-events-input"
         value={number}
+        placeholder="Enter Number Value"
         onChange={handleInputChanged}
       />
       <button id = "clear-button"onClick={clearInput} style={{ marginLeft: '10px' }}>
