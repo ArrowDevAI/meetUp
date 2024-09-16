@@ -8,13 +8,13 @@ const Event = ({ event }) => {
   };
 
   return (
-    <li data-testid = 'event-component' id ="event-component">
+    <li className= 'event' data-testid = 'event-component' id ="event-component">
       <div>
         <h1 data-testid = 'title'>{event.summary}</h1>
         <p><strong>Location: </strong> {event.location}</p>
         <p>{event && (new Date(event.created)).toUTCString()}</p>
       </div>
-      <button data-testid = 'details-button' id="details-button" onClick={toggleDetails}>
+      <button className ="details-button" onClick={toggleDetails}>
         {showDetails ? 'Hide Details' : 'Show Details'}
       </button>
       
