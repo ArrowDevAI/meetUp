@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const NumberOfEvents = ({ }) => {
+const NumberOfEvents = ({setCurrentNOE}) => {
 
   const [number, setNumber] = useState(32);
 
@@ -21,6 +21,9 @@ const NumberOfEvents = ({ }) => {
         value={number}
         onChange={handleInputChanged}
       />
+      <button onClick={clearInput} style={{ marginLeft: '10px' }}>
+        Clear
+      </button>
     </div>
   );
 }
