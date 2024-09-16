@@ -7,12 +7,15 @@ const NumberOfEvents = ({setCurrentNOE}) => {
   const [number, setNumber] = useState(32);
 
   const handleInputChanged = (event) => {
-    const value = event.target.value;
+    const value = event.target.value; 
+
     setNumber(value);
+    setCurrentNOE(value);
   }
 
   const clearInput = () => {
-    setNumber('');
+    setNumber('')
+    setCurrentNOE('32')
   };
 
   return (
@@ -25,7 +28,7 @@ const NumberOfEvents = ({setCurrentNOE}) => {
         value={number}
         onChange={handleInputChanged}
       />
-      <button onClick={clearInput} style={{ marginLeft: '10px' }}>
+      <button id = "clear-button"onClick={clearInput} style={{ marginLeft: '10px' }}>
         Clear
       </button>
     </div>
