@@ -1,6 +1,25 @@
 
 import mockData from "./mock-data";
 
+export const getEvents = async () => {
+  if (window.location.href.startsWith("http://localhost")) {
+    return mockData;
+  }
+
+  const token = await getAccessToken();
+
+  if (token) {
+    removeQuery();
+    const url =  "https://8gilx17aye.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token;
+    const response = await fetch(url);
+    const result = await response.json();
+    if (result) {
+      return result.events;
+    } else return null; 
+  }
+};
+
+
 const checkToken = async (accessToken) => {
 const response = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
@@ -64,20 +83,3 @@ export const extractLocations = (events) => {
   return locations;
 };
 
-export const getEvents = async () => {
-  if (window.location.href.startsWith("http://localhost")) {
-    return mockData;
-  }
-
-  const token = await getAccessToken();
-
-  if (token) {
-    removeQuery();
-    const url =  "https://8gilx17aye.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token;
-    const response = await fetch(url);
-    const result = await response.json();
-    if (result) {
-      return result.events;
-    } else return null; 
-  }
-};
