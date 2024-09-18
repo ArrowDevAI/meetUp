@@ -1,7 +1,8 @@
 
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { getEvents } from '../api';
-import { render, within, waitFor, act } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
+import { act } from 'react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
 
@@ -58,10 +59,10 @@ defineFeature(feature, test => {
             
             NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
             eventsTextBox = within(NumberOfEventsDOM).queryByRole('textbox');
-           await act(async () => {
+           
                 await user.clear(eventsTextBox);
-                await user.type(eventsTextBox, '');
-            });
+                await user.type(eventsTextBox, '5');
+         
            
           
         });
