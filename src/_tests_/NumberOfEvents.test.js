@@ -10,7 +10,7 @@ import { getEvents } from '../api';
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
   beforeEach(() => {
-    NumberOfEventsComponent = render(<NumberOfEvents/>);
+    NumberOfEventsComponent = render(<NumberOfEvents setErrorAlert = {()=>{}}/>);
   });
 
   test('renders number of events text input', () => {
@@ -27,7 +27,7 @@ describe('<NumberOfEvents /> component', () => {
   test('number of events text box value changes when the user types in it', async () => {
     const user = userEvent.setup();
     const numberTextBox = NumberOfEventsComponent.queryByRole('textbox');
-    NumberOfEventsComponent.rerender(<NumberOfEvents setCurrentNOE= {() => { }}
+    NumberOfEventsComponent.rerender(<NumberOfEvents setErrorAlert = {()=>{}} setCurrentNOE= {() => { }}
     />)
     await user.type(numberTextBox, "123")
     expect(numberTextBox).toHaveValue("32123");

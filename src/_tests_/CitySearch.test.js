@@ -8,8 +8,12 @@ import { extractLocations, getEvents } from '../api';
 
 describe('<CitySearch /> component', () => {
   let CitySearchComponent;
-  beforeEach(() => {
-    CitySearchComponent = render(<CitySearch allLocations={[]} />);
+  let allLocations;
+  let allEvents;
+  beforeEach(async () => {
+    allEvents = await getEvents();
+    allLocations = extractLocations(allEvents);
+    CitySearchComponent = render(<CitySearch  allLocations={allLocations} setCurrentCity={() => { }} setInfoAlert={() => { }}/>);
   });
 
 
@@ -36,9 +40,7 @@ describe('<CitySearch /> component', () => {
 
   test('updates list of suggestions correctly when user types in city textbox', async () => {
     const user = userEvent.setup();
-    const allEvents = await getEvents();
-    const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+
 
     // user types "Berlin" in city textbox
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
@@ -61,13 +63,12 @@ describe('<CitySearch /> component', () => {
     const user = userEvent.setup();
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
-    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }}
+    CitySearchComponent.rerender(<CitySearch allLocations={allLocations} setCurrentCity={() => { }} setInfoAlert={() => {}}
     />);
 
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");
 
-    // the suggestion's textContent look like this: "Berlin, Germany"
     const BerlinGermanySuggestion = CitySearchComponent.queryAllByRole('listitem')[0];
 
     await user.click(BerlinGermanySuggestion);

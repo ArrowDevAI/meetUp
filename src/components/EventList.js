@@ -1,4 +1,3 @@
-// src/components/EventList.js
 
 import Event from "./Event";
 

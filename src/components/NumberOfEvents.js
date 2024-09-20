@@ -1,9 +1,7 @@
-// src/components/NumberOfEvents.js
 
-import { findByPlaceholderText } from "@testing-library/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const NumberOfEvents = ({setCurrentNOE}) => {
+const NumberOfEvents = ({setCurrentNOE, setErrorAlert}) => {
 
   const [number, setNumber] = useState(32);
 
@@ -11,7 +9,20 @@ const NumberOfEvents = ({setCurrentNOE}) => {
     let value = event.target.value; 
     setNumber(value);
     setCurrentNOE(value);
+  
   }
+  useEffect(() => {
+    let errorText;
+   
+    if (isNaN(number) || number <= 0) {
+      errorText = "Please Enter a Valid Number";
+    } else {
+      errorText = "";
+    }
+
+    setErrorAlert(errorText);
+  }, [number, setErrorAlert]);
+
 
   const clearInput = () => {
     setNumber('')
