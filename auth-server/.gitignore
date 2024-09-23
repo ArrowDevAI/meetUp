@@ -1,0 +1,9 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+config.json
+buck_dancer.json
+buck_dancer_2.txt
