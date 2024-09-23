@@ -37,7 +37,7 @@ let warningText;
       setWarningAlert("");
     }else{
       warningText = "This application is currently offline"
-      setWarningAlert(warningText);
+      warningAlert(warningText);
     }
     fetchData();
   }, [currentCity, currentNOE]);
