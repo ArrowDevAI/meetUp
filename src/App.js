@@ -37,7 +37,7 @@ let warningText;
       setWarningAlert("");
     }else{
       warningText = "This application is currently offline"
-      warningAlert(warningText);
+      setWarningAlert(warningText);
     }
     fetchData();
   }, [currentCity, currentNOE]);
@@ -49,6 +49,7 @@ let warningText;
       <div className = 'alerts-container'>
         {infoAlert.length ? <InfoAlert text = {infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text = {errorAlert}/> : null}
+        {warningAlert.length? <warningAlert text = {warningAlert} /> : null}
       </div>
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
       <NumberOfEvents currentNOE = {currentNOE} setCurrentNOE = {setCurrentNOE} setErrorAlert = {setErrorAlert} />
