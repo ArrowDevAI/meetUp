@@ -31,6 +31,8 @@ const App = () => {
   }
 
   useEffect(() => {
+let warningText;
+
     if (navigator.onLine){
       setWarningAlert("");
     }else{
