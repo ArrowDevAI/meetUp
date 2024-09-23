@@ -29,23 +29,24 @@ const App = () => {
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
   }
-
+  useEffect(()=>{
+  
+    let warningText;
+  
+      if (navigator.onLine){
+        setWarningAlert("");
+      }else{
+        warningText = "This application is currently offline"
+        setWarningAlert(warningText);
+      }
+  },[navigator.onLine])
+  
   useEffect(() => {
 
     fetchData();
   }, [currentCity, currentNOE]);
 
-useEffect(()=>{
-  
-  let warningText;
 
-    if (navigator.onLine){
-      setWarningAlert("Tst");
-    }else{
-      warningText = "This application is currently offline"
-      setWarningAlert(warningText);
-    }
-},[navigator.onLine])
 
   return (
     <div className="App">
