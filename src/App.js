@@ -29,18 +29,22 @@ const App = () => {
     setEvents(filteredEvents.slice(0, currentNOE));
     setAllLocations(extractLocations(allEvents));
   }
-  useEffect(()=>{
+  useEffect(() => {
+    const updateOnlineStatus = () => {
+      setWarningAlert(navigator.onLine ? "" : "This application is currently offline");
+    };
+
+    updateOnlineStatus(); 
   
-    let warningText;
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
   
-      if (navigator.onLine){
-        setWarningAlert("");
-      }else{
-        warningText = "This application is currently offline"
-        setWarningAlert(warningText);
-      }
-  },[navigator.onLine])
-  
+    return () => {
+      window.removeEventListener('online', updateOnlineStatus);
+      window.removeEventListener('offline', updateOnlineStatus);
+    };
+  }, []);
+
   useEffect(() => {
 
     fetchData();
