@@ -36,10 +36,11 @@ const App = () => {
   }, [currentCity, currentNOE]);
 
 useEffect(()=>{
+  
   let warningText;
 
     if (navigator.onLine){
-      setWarningAlert("");
+      setWarningAlert("Tst");
     }else{
       warningText = "This application is currently offline"
       setWarningAlert(warningText);
