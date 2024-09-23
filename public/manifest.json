@@ -1,10 +1,10 @@
 {
   "short_name": "meetUp",
-  "name": "meetUp App",
+  "name": "meetUp",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "48x48",
+      "sizes": "96x96",
       "type": "image/x-icon",
       "purpose": "maskable"
     },
