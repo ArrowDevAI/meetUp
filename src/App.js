@@ -31,7 +31,12 @@ const App = () => {
   }
 
   useEffect(() => {
-let warningText;
+
+    fetchData();
+  }, [currentCity, currentNOE]);
+
+useEffect(()=>{
+  let warningText;
 
     if (navigator.onLine){
       setWarningAlert("");
@@ -39,19 +44,15 @@ let warningText;
       warningText = "This application is currently offline"
       setWarningAlert(warningText);
     }
-    fetchData();
-  }, [currentCity, currentNOE]);
-
-
+},[navigator.onLine])
 
   return (
     <div className="App">
       <div className = 'alerts-container'>
         {infoAlert.length ? <InfoAlert text = {infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text = {errorAlert}/> : null}
-        {warningAlert.length? <warningAlert text = {warningAlert} /> : null}
-      </div>
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
+        {warningAlert.length? <WarningAlert text = {warningAlert} /> : null}
+      </div>      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
       <NumberOfEvents currentNOE = {currentNOE} setCurrentNOE = {setCurrentNOE} setErrorAlert = {setErrorAlert} />
       <EventList events={events} />
     </div>
