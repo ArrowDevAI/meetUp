@@ -9,10 +9,16 @@
       "purpose": "maskable"
     },
     {
-      "src": "luka192",
+      "src": "luka144",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any"
+    },
+    {
+      "src": "luka192",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "luka512.png",
