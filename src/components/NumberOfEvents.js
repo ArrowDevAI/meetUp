@@ -40,9 +40,13 @@ const NumberOfEvents = ({setCurrentNOE, setErrorAlert}) => {
         placeholder="Enter Number Value"
         onChange={handleInputChanged}
       />
-      <button id = "clear-button"onClick={clearInput} style={{ marginLeft: '10px' }}>
-        Clear
-      </button>
+   <button 
+  id="clear-button" 
+  onClick={() => setNumber("32")} 
+  style={{ marginLeft: '10px' }}>
+    Reset
+</button>
+
     </div>
   );
 }
