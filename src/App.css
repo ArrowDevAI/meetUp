@@ -96,3 +96,14 @@ input[type="number"] {
   z-index: 1000;
   gap: 10px; /* Optional: Adds space between alerts */
 }
+
+.charts-container {
+  display: grid; /* Ensure grid layout is applied */
+  grid-template-columns: 1fr 1fr; /* Default for larger screens */
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr; 
+  }
+}

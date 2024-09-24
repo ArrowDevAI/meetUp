@@ -62,7 +62,7 @@ const App = () => {
         {warningAlert.length? <WarningAlert text = {warningAlert} /> : null}
       </div>      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
       <NumberOfEvents currentNOE = {currentNOE} setCurrentNOE = {setCurrentNOE} setErrorAlert = {setErrorAlert} />
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div className = "charts-container">
       <CityEventsChart allLocations={allLocations} events={events} />
       <EventGenresChart events={events} />
       </div>
