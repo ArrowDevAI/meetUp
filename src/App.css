@@ -87,15 +87,18 @@ input[type="number"] {
   cursor: pointer;
 }
 .alerts-container {
-  position: fixed;
-  top: 70%;
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust to truly center it */
-  width: 95%; /* Allow width to fit content */
-  height: 30px;
+  position: relative; /* Keeps it in the document flow */
+  width: 95%; 
+  margin: 0 auto; /* Centers horizontally */
+  height: auto; 
+  padding: 10px;
   z-index: 1000;
-  gap: 10px; /* Optional: Adds space between alerts */
+  gap: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff; 
+  margin-bottom: 20px; /* Adds a 20px margin at the bottom */
 }
+
 
 .charts-container {
   display: grid; 
