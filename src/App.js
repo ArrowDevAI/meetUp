@@ -56,19 +56,23 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className = 'alerts-container'>
-        {infoAlert.length ? <InfoAlert text = {infoAlert} /> : null}
-        {errorAlert.length ? <ErrorAlert text = {errorAlert}/> : null}
-        {warningAlert.length? <WarningAlert text = {warningAlert} /> : null}
-      </div>      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
-      <NumberOfEvents currentNOE = {currentNOE} setCurrentNOE = {setCurrentNOE} setErrorAlert = {setErrorAlert} />
-      <div className = "charts-container">
-      <CityEventsChart allLocations={allLocations} events={events} />
-      <EventGenresChart events={events} />
+      {infoAlert.length || errorAlert.length || warningAlert.length ? (
+        <div className="alerts-container">
+          {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
+          {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+          {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
+        </div>
+      ) : null}
+      
+      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
+      <NumberOfEvents currentNOE={currentNOE} setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
+      <div className="charts-container">
+        <CityEventsChart allLocations={allLocations} events={events} />
+        <EventGenresChart events={events} />
       </div>
       <EventList events={events} />
     </div>
   );
-}
+};  
 
 export default App;
