@@ -97,8 +97,6 @@ input[type="number"] {
   gap: 10px; /* Optional: Adds space between alerts */
 }
 
-css
-Copy code
 .charts-container {
   display: grid; 
   grid-template-columns: 1fr 1fr; 
