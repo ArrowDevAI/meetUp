@@ -27,7 +27,7 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": "https://arrowdevai.github.io/meetUp/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#ADD8E6",
   "background_color": "#ffffff",
