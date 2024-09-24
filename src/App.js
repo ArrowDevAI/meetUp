@@ -9,6 +9,7 @@ import { InfoAlert } from './components/Alert';
 import { ErrorAlert } from './components/Alert';
 import { WarningAlert } from './components/Alert';
 import CityEventsChart from './components/CityEventsChart';
+import { EventGenresChart } from './components/EventGenresChart';
 
 import './App.css';
 
@@ -61,7 +62,10 @@ const App = () => {
         {warningAlert.length? <WarningAlert text = {warningAlert} /> : null}
       </div>      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert = {setInfoAlert} />
       <NumberOfEvents currentNOE = {currentNOE} setCurrentNOE = {setCurrentNOE} setErrorAlert = {setErrorAlert} />
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
       <CityEventsChart allLocations={allLocations} events={events} />
+      <EventGenresChart events={events} />
+      </div>
       <EventList events={events} />
     </div>
   );
