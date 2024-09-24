@@ -97,13 +97,17 @@ input[type="number"] {
   gap: 10px; /* Optional: Adds space between alerts */
 }
 
+css
+Copy code
 .charts-container {
-  display: grid; /* Ensure grid layout is applied */
-  grid-template-columns: 1fr 1fr; /* Default for larger screens */
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  overflow: auto; /* Add this to handle overflow */
 }
 
 @media (max-width: 768px) {
   .charts-container {
     grid-template-columns: 1fr; 
+    overflow: auto; /* Keep this for mobile view */
   }
 }
