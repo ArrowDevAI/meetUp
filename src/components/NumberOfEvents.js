@@ -25,7 +25,7 @@ const NumberOfEvents = ({setCurrentNOE, setErrorAlert}) => {
 
 
   const clearInput = () => {
-    setNumber('')
+    setNumber('32')
     setCurrentNOE('32')
   };
 
@@ -42,7 +42,7 @@ const NumberOfEvents = ({setCurrentNOE, setErrorAlert}) => {
       />
    <button 
   id="clear-button" 
-  onClick={() => setNumber("32")} 
+  onClick={() => clearInput()} 
   style={{ marginLeft: '10px' }}>
     Reset
 </button>
